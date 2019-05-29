@@ -1,9 +1,11 @@
 /* eslint-disable */
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 export default class index extends Component {
-  static propTypes = {};
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  };
 
   state = {};
 
@@ -15,4 +17,3 @@ export default class index extends Component {
     );
   }
 }
-

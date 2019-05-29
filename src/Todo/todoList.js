@@ -19,6 +19,3 @@ todoList.propTypes = {
 };
 
 export default todoList;
-
-
-

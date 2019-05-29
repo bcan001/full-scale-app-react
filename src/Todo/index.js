@@ -8,20 +8,20 @@ import TodoStatus from './todoStatus';
 export default class index extends Component {
   state = {
     todoText: '',
-    todos: []
+    todos: [],
   };
 
   onChange = event => {
     this.setState({ todoText: event.target.value }); //sst
   };
 
-  addTodo = (e) => {
+  addTodo = e => {
     e.preventDefault();
     const { todoText, todos } = this.state; //cs
     this.setState({
-    todos: [{ id: todos.length, text: todoText, isDone: false }, ...todos],
-    todoText: '',
-    noticeText: ''
+      todos: [{ id: todos.length, text: todoText, isDone: false }, ...todos],
+      todoText: '',
+      noticeText: '',
     }); //sst
   };
 

@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { API } from '../../utils';
-// import PropTypes from 'prop-types';
+import CourseList from './courseList';
 
 export default class index extends Component {
-  static propTypes = {};
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  };
 
   state = {
     courses: [],
@@ -39,6 +42,15 @@ export default class index extends Component {
     return '';
   };
 
+  addTodo = () => {
+    const { authors } = this.state;
+    const { history } = this.props;
+    history.push({
+      pathname: '/about',
+      state: { authors },
+    });
+  };
+
   render() {
     const { courses, loading, error } = this.state;
     if (loading) {
@@ -51,31 +63,10 @@ export default class index extends Component {
 
     return (
       <div>
-        <h1>Home Page</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Link</th>
-              <th>Author</th>
-              <th>Length</th>
-              <th>Category</th>
-            </tr>
-          </thead>
-          <tbody>
-            {courses.map(course => (
-              <tr key={course.id}>
-                <td>{course.title}</td>
-                <td>
-                  <a href={course.watchHref}>Link</a>
-                </td>
-                <td>{this.renderAuthor(course.authorId)}</td>
-                <td>{course.length}</td>
-                <td>{course.category}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <button type="button" onClick={this.addTodo}>
+          Add Todo
+        </button>
+        <CourseList courses={courses} renderAuthor={this.renderAuthor} />
       </div>
     );
   }
